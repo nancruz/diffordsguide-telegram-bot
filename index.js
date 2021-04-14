@@ -1,4 +1,4 @@
-const { Telegraf } = require('telegraf');
+const Telegraf = require('telegraf');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const diffordsguideHost = 'https://www.diffordsguide.com';
@@ -21,6 +21,11 @@ const months = {
 require('dotenv').config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
+
+if (process.env.NODE_ENV === 'production') {
+    bot.telegram.setWebhook(`${process.env.HEROKU_URL}/bot${process.env.BOT_TOKEN}`);
+    bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);    
+}
 
 bot.start((ctx) => ctx.reply('Welcome 🥃'));
 bot.command('help', (ctx) => {
