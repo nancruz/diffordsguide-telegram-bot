@@ -1,4 +1,4 @@
-const Telegraf = require('telegraf');
+const { Telegraf } = require('telegraf');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const diffordsguideHost = 'https://www.diffordsguide.com';
